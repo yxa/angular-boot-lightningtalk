@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <!-- alot of legacy apps have the scripts included in the header-->
+    <script src="angular.js"></script>
+    <script src="myAngularApp.js"></script>
+  </head>
+  <body>
+    <div id="myApp">
+      <div ng-controller="myController">
+
+        <!-- bind to a simple value -->
+        <input type="text" ng-model="myName">
+        <p ng-bind="myName"></p>
+
+        <!-- query dummy json server -->
+        <input type="button" value="query echo server" ng-click="queryServer()"/>
+
+        <!-- loop over the results -->
+        <ul>
+          <!-- ng-bind is preferred over the {{ }} syntax -->
+          <li ng-repeat="obj in resultFromServer">{{obj}}</li>
+        </ul>
+
+      </div>
+    </div>
+
+    <!-- angular has its own query engine, we dont need to use jquery and you should avoid it-->
+    <script>
+       angular.element(document).ready(function() {
+         angular.bootstrap(document.getElementById("myApp"), ['myApp']);
+       });
+    </script>
+  </body>
+</html>
